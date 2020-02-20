@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.AnswerMapper">
+	
+	<insert id="insert" parameterType="answer"> 
+		INSERT INTO BANSWER VALUES (SEQ_BANSWER.nextval,#{acontent},#{boardno})	
+	</insert>
+	
+	<update id="update" parameterType="answer">
+		UPDATE BANSWER SET ACONTENT=#{bcontent} BANSWERNO=#{banswerno}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM BANSWER WHERE BANSWERNO=#{banswerno}
+	</delete>
+	
+	<select id="select" parameterType="String" 
+	resultType="answer">
+		SELECT * FROM BANSWER WHERE BANSWERNO=#{banswerno} 
+	</select>
+	
+	<select id="selectall" resultType="answer">
+		SELECT * FROM BANSWER 
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

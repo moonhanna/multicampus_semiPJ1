@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.UserorderMapper">
+
+	<insert id="insert" parameterType="userorder">
+		INSERT INTO USERORDER VALUES
+		(SEQ_USERORDER.nextval,#{userid},#{payment},#{totalquantity},#{totalprice},sysdate)
+	</insert>
+
+	<update id="update" parameterType="userorder">
+		UPDATE USERORDER SET
+		USERID=#{userid},PAYMENT=#{payment},TOTALQUANTITY=#{totalquantity},TOTALPRICE=#{totalprice},ORDERDATE=#{orderdate}
+		WHERE ORDERNO=#{orderno}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM USERORDER WHERE
+		ORDERNO=#{obj}
+	</delete>
+
+	<select id="select" parameterType="String"
+		resultType="userorder">
+		SELECT * FROM USERORDER WHERE ORDERNO=#{obj}
+	</select>
+
+	<select id="selectnew" resultType="userorder">
+		SELECT * FROM (SELECT * FROM USERORDER ORDER BY ORDERNO DESC) WHERE ROWNUM = 1
+	</select>
+
+	<select id="selectall" resultType="userorder">
+		SELECT * FROM USERORDER
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

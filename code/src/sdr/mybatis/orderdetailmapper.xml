@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.OrderdetailMapper">
+	
+	<insert id="insert" parameterType="orderdetail">
+		INSERT INTO ORDERDETAIL VALUES (SEQ_ORDERDETAIL.nextval,#{prodname},#{prodquantity},#{prodprice},#{orderno})	
+	</insert>
+	
+	<update id="update" parameterType="orderdetail">
+		UPDATE ORDERDETAIL SET PRODNAME=#{prodname},PRODQUANTITY=#{prodquantity},PRODPRICE=#{prodprice},#{orderno} WHERE ORDERDETAILNO=#{orderdetailno}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		DELETE FROM ORDERDETAIL WHERE ORDERDETAILNO=#{orderdetailno}
+	</delete>
+	
+	<select id="select" parameterType="String" resultType="orderdetail">
+		SELECT * FROM ORDERDETAIL WHERE ORDERDETAILNO=#{orderdetailno}	
+	</select>
+	
+	<select id="selectnew" resultType="orderdetail">
+		SELECT * FROM (SELECT * FROM ORDERDETAIL ORDER BY ORDERDETAILNO DESC) WHERE ROWNUM = 1	
+	</select>
+	
+	<select id="selectall" resultType="orderdetail">
+		SELECT * FROM ORDERDETAIL 
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

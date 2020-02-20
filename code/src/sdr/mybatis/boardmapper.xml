@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.BoardMapper">
+	<!--  mybatis 에서 별칭 alias boards 로 선언 -->
+	<!--  board는 권한이 필요하다. -->
+	<insert id="insert" parameterType="boards"> 
+		INSERT INTO BOARD VALUES (board_seq.nextval,#{userid},#{bcontent},#{bdate},#{prodname},#{btype},#{bstar})	
+	</insert>
+	<!-- 게시물 수정.. 권한설정기능 필요할듯.  -->
+	<update id="update" parameterType="boards">
+		UPDATE BOARD SET BCONTENT=#{bcontent} WHERE BOARDNO = #{boardno} AND USERID=#{userid}
+	</update>
+	<!--  게시물 삭제  --> 
+	<!--  BOARDNO 로 지울지 아니면 ID 권한으로 지울지에 따라서 달라질듯 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM BOARD WHERE BOARDNO=#{boardno}
+	</delete>
+	<!--  게시물 내용 보여주기 BY 제품별로-->
+	<select id="selectAll" parameterType="String" 
+	resultType="boards">
+		SELECT * FROM BOARD WHERE PRODNAME=#{obj} 
+	</select>
+	<!--  제품 별 게시판 QA 가져오기 -->
+	<select id="selectQA" parameterType="String" 
+	resultType="boards">
+		SELECT * FROM BOARD WHERE PRODNAME=#{obj} AND BTYPE='QA' ORDER BY boardno DESC
+	</select>
+	<!--  제품 별 게시판 RV 가져오기 -->
+	<select id="selectRV" parameterType="String" 
+	resultType="boards">
+		SELECT * FROM BOARD WHERE PRODNAME=#{obj} AND BTYPE='RV' ORDER BY boardno DESC	
+	</select>
+	<!--  장바구니 선택,전부 보여주기 vs 가격만 보여주기 기능 따로? -->
+	<select id="selectall" resultType="boards">
+		SELECT * FROM BOARD 
+	</select>
+	
+</mapper>

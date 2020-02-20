@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="sdr.vo.UserVO" alias="user"/>
+		<typeAlias type="sdr.vo.ProductVO" alias="product"/>
+		<typeAlias type="sdr.vo.CartVO" alias="cart"/>
+		<typeAlias type="sdr.vo.BoardVO" alias="boards"/>
+		<typeAlias type="sdr.vo.OrderdetailVO" alias="orderdetail"/>
+		<typeAlias type="sdr.vo.UserorderVO" alias="userorder"/>
+		<typeAlias type="sdr.vo.CartDetailVO" alias="carts"/>
+		<typeAlias type="sdr.vo.AnswerVO" alias="answer"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="sdr/mybatis/productmapper.xml"/>
+		<mapper resource="sdr/mybatis/usermapper.xml"/>
+		<mapper resource="sdr/mybatis/cartmapper.xml"/>
+		<mapper resource="sdr/mybatis/boardmapper.xml"/>
+		<mapper resource="sdr/mybatis/cartdetailmapper.xml"/>
+		<mapper resource="sdr/mybatis/orderdetailmapper.xml"/>
+		<mapper resource="sdr/mybatis/userordermapper.xml"/>
+		<mapper resource="sdr/mybatis/answer.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+

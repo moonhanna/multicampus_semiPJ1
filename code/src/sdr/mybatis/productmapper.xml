@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.ProductMapper">
+
+	<insert id="insert" parameterType="product">
+		INSERT INTO PRODUCT VALUES
+		(#{prodname},#{brand},#{price},#{speccpu},#{specram},#{specstorage},#{specsize},#{specimg},#{stock}, #{proddate})
+	</insert>
+
+	<update id="update" parameterType="product">
+		UPDATE PRODUCT SET
+		BRAND=#{brand},price=#{price},SPECCPU=#{speccpu},SPECRAM=#{specram},SPECSTORAGE=#{specstorage},SPECSIZE=#{specsize},SPECIMG=#{specimg},STOCK=#{stock}, PRODDATE=#{proddate}
+		WHERE PRODNAME=#{prodname}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM PRODUCT WHERE
+		PRODNAME=#{obj}
+	</delete>
+
+	<select id="select" parameterType="String" resultType="product">
+		SELECT *
+		FROM PRODUCT WHERE PRODNAME=#{obj}
+	</select>
+	
+	<select id="selectBrand" parameterType="String" resultType="product">
+		SELECT *
+		FROM PRODUCT WHERE BRAND=#{obj}
+	</select>
+	<select id="selectSpeccpu" parameterType="String" resultType="product">
+		SELECT *
+		FROM PRODUCT WHERE SPECCPU=#{obj}
+	</select>
+
+	<select id="selectall" resultType="product">
+		SELECT * FROM PRODUCT
+	</select>
+	
+	<select id="selectRank" resultType="product">
+		SELECT * FROM PRODUCT ORDER BY STOCK ASC
+	</select>
+
+</mapper>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sdr.mapper.CartMapper">
+
+	<insert id="insertCart" parameterType="cart"><!-- 삽입  -->
+		INSERT INTO CART VALUES
+		(SEQ_CART.NEXTVAL, #{userid}, #{prodname}, #{quantity})
+	</insert>
+	
+	<select id = "selectCart" parameterType = "cart" resultType= "cart">
+		SELECT * FROM cart WHERE userid = #{userid} AND prodname = #{prodname}
+	</select>
+	
+	<select id = "selectCartById" resultType = "cart">
+		SELECT * FROM cart WHERE userid = #{userid}
+	</select>
+	<select id="selectAllCart" parameterType="String" resultType="cart">
+		SELECT 
+			c.cartno AS cartno,
+			c.userid AS userid,
+			p.prodname AS prodname,
+			c.quantity AS quantity,
+			p.price AS price,
+			(price * quantity) money,
+			p.specimg AS specimg
+		FROM 
+			USERS u, PRODUCT p, CART c
+		WHERE u.userid = c.userid 
+			AND p.prodname = c.prodname 
+			AND u.userid = #{obj}
+		ORDER BY cartno
+	</select>
+
+	<select id = "sumMoneyCart" resultType = "int">
+		SELECT NVL(SUM(price * quantity ), 0) money
+        FROM cart c, product p
+        WHERE c.prodname = p.prodname AND c.userid = #{userId}
+	</select>
+
+	<update id="modifyCart" parameterType="cart"><!-- 업에이트  -->
+		UPDATE CART SET
+		QUANTITY = {#quantity}
+		where USERID = {#userid}
+	 	AND PRODNAME = #{prodname}
+	</update>
+
+	<delete id="deleteCart" parameterType="String"><!-- 장바구니 삭제  -->
+		DELETE FROM CART WHERE
+		CARTNO=#{obj}
+	</delete>
+	
+	<select id = "countCart"  resultType = "int">
+		SELECT COUNT(*)
+		FROM cart
+		WHERE userid = #{userid}
+		AND prodname = #{prodname}
+	</select>
+	
+	
+	<update id="updateCart" ><!-- 장바구니에 동일한 상품이 존재하면 수정  -->
+		UPDATE cart
+		SET quantity = quantity + #{quantity}
+		WHERE userid = #{userid}
+		AND prodname = #{prodname} 
+	</update>
+</mapper>

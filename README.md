@@ -17,13 +17,13 @@
 
 ### ERD
 
-![](.\img\ERD.PNG)
+<img width="526" alt="ERD" src="https://user-images.githubusercontent.com/36683607/74899741-1c8d7100-53e1-11ea-94cf-f6bd77468db0.PNG">
 
 
 
 ### 화면 설계
 
-<img width="526" alt="ERD" src="https://user-images.githubusercontent.com/36683607/74899741-1c8d7100-53e1-11ea-94cf-f6bd77468db0.PNG">
+![화면](https://user-images.githubusercontent.com/36683607/74899745-1dbe9e00-53e1-11ea-9b82-51992d9df71e.jpg)
 
 
 
